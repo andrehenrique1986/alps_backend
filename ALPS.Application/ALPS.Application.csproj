@@ -7,9 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="AppServices\Interfaces\" />
-    <Folder Include="AppServices\Services\" />
     <Folder Include="DTO\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ALPS.Domain\ALPS.Domain.csproj" />
   </ItemGroup>
 
 </Project>

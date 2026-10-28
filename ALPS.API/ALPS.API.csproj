@@ -17,4 +17,10 @@
     <Folder Include="Mappers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ALPS.Application\ALPS.Application.csproj" />
+    <ProjectReference Include="..\ALPS.Domain\ALPS.Domain.csproj" />
+    <ProjectReference Include="..\ALPS.Infra.Data\ALPS.Infra.Data.csproj" />
+  </ItemGroup>
+
 </Project>

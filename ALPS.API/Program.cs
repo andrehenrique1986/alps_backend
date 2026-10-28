@@ -1,3 +1,9 @@
+using ALPS.Application.AppServices.Interfaces;
+using ALPS.Application.AppServices.Services;
+using ALPS.Domain.Interfaces.Repository;
+using ALPS.Domain.Interfaces.Services;
+using ALPS.Domain.Services;
+using ALPS.Infra.Data.Repositories;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +21,16 @@ builder.Services.AddSwaggerGen(c =>
         Version = "v1"
     });
 });
+
+// Serviços da camada de aplicação
+builder.Services.AddScoped<IAppUsuarioService, AppUsuarioService>();
+
+// Serviços da camada de domínio
+builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+
+
+// Repositórios da camada de infraestrutura
+builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
 var app = builder.Build();
 
