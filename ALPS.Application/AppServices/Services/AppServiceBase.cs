@@ -1,10 +1,6 @@
 ﻿using ALPS.Application.AppServices.Interfaces;
 using ALPS.Domain.Interfaces.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace ALPS.Application.AppServices.Services
 {
@@ -17,14 +13,14 @@ namespace ALPS.Application.AppServices.Services
             _serviceBase = serviceBase;
         }
 
-        public Task Atualizar(TEntity entity)
+        public async Task Atualizar(TEntity entity)
         {
-            throw new NotImplementedException();
+            await _serviceBase.Atualizar(entity);
         }
 
-        public Task<bool> Excluir(int id)
+        public async Task<bool> Excluir(int id)
         {
-            throw new NotImplementedException();
+            return await _serviceBase.Excluir(id);
         }
 
         public async Task Inserir(TEntity entity)
@@ -32,14 +28,14 @@ namespace ALPS.Application.AppServices.Services
             await _serviceBase.Inserir(entity);
         }
 
-        public Task<TEntity> ListarPorId(int id)
+        public async Task<TEntity> ListarPorId(int id)
         {
-            throw new NotImplementedException();
+            return await _serviceBase.ListarPorId(id);
         }
 
-        public Task<IEnumerable<TEntity>> ListarTodos()
+        public async Task<IEnumerable<TEntity>> ListarTodos()
         {
-            throw new NotImplementedException();
+            return await _serviceBase.ListarTodos();
         }
     }
 }
