@@ -3,7 +3,8 @@ using ALPS.Application.AppServices.Services;
 using ALPS.Domain.Interfaces.Repository;
 using ALPS.Domain.Interfaces.Services;
 using ALPS.Domain.Services;
-using ALPS.Infra.Data.Repositories;
+using ALPS.Infra.CrossCutting;
+using ALPS.Infra.Data.Repopsitories;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+builder.Services.AddInfrastructure(builder.Configuration);
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>

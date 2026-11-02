@@ -1,0 +1,34 @@
+name: ALPS CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "main"]
+  pull_request:
+    branches: [ "main"]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Baixa o código do repositório
+    - name: Checkout do Código
+      uses: actions/checkout@v4
+
+    # 2. Configura o SDK do .NET 8
+    - name: Configurar o .NET 8
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+
+    # 3. Restaura as dependências do projeto
+    - name: Restaurar Dependências
+      run: dotnet restore
+
+    # 4. Compila o código (Build)
+    - name: Compilar Projeto
+      run: dotnet build --no-restore --configuration Release
+
+    # 5. Executa os testes unitários (ex: xUnit)
+    - name: Executar Testes
+      run: dotnet test --no-build --configuration Release --verbosity normal
