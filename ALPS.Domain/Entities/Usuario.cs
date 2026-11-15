@@ -1,9 +1,5 @@
 ﻿using ALPS.Domain.Validations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace ALPS.Domain.Entities
 {
@@ -12,7 +8,7 @@ namespace ALPS.Domain.Entities
         public int UsuarioId { get; private set; }
         public string UsuarioNome { get; private set; }
         public string UsuarioEmail { get; private set; }
-        public string UsuarioCPF { get; private set; }
+        public NumeroFiscal UsuarioCPF { get; private set; }
         public string UsuarioSenhaHash { get; private set; }
         public bool UsuarioAtivo { get; private set; }
         public DateTime UsuarioDataCriacao { get; private set; }
@@ -23,7 +19,7 @@ namespace ALPS.Domain.Entities
             int usuarioId, 
             string usuarioNome, 
             string usuarioEmail, 
-            string usuarioCPF, 
+            NumeroFiscal usuarioCPF, 
             string usuarioSenhaHash, 
             bool usuarioAtivo 
             )
@@ -37,14 +33,14 @@ namespace ALPS.Domain.Entities
                 usuarioSenhaHash, 
                 usuarioAtivo    
                 );
-            DomainExceptionValidation.When(UsuarioDataCriacao > DateTime.Now, "A data de criação do usuário não pode ser no futuro");
+            DomainExceptionValidation.When(UsuarioDataCriacao > DateTime.Now, "A Data de Criação do usuário não pode ser no futuro");
             UsuarioDataCriacao = DateTime.Now;
         }
 
         public Usuario(
             string usuarioNome,
             string usuarioEmail,
-            string usuarioCPF,
+            NumeroFiscal usuarioCPF,
             string usuarioSenhaHash,
             bool usuarioAtivo,
             DateTime usuarioDataCriacao
@@ -63,21 +59,21 @@ namespace ALPS.Domain.Entities
         public void ValidateDomain(
                 string usuarioNome,
                 string usuarioEmail,
-                string usuarioCPF,
+                NumeroFiscal usuarioCPF,
                 string usuarioSenhaHash,
                 bool usuarioAtivo            
             )
         {
-            DomainExceptionValidation.When(string.IsNullOrEmpty(usuarioNome), "O Nome do Usuário não pode ser vazio");
-            DomainExceptionValidation.When(usuarioNome.Length > 200, "O Nome do Usuário deve ter no máximo 200 caracteres");
-            DomainExceptionValidation.When(string.IsNullOrEmpty(usuarioEmail), "O Email do Usuário não pode ser vazio");
+            DomainExceptionValidation.When(string.IsNullOrEmpty(usuarioNome), "O Nome do Usuário é obrigatório.");
+            DomainExceptionValidation.When(usuarioNome.Length > 200, "O Nome do Usuário deve ter no máximo 200 caracteres.");
+            DomainExceptionValidation.When(string.IsNullOrEmpty(usuarioEmail), "O Email do Usuário é obrigatório.");
             DomainExceptionValidation.When(usuarioEmail.Length < 5 || usuarioEmail.Length > 200, 
-                "O Email do Usuário deve ter no mínimo 5 caracteres e no máximo 200 caracteres");
-            DomainExceptionValidation.When(string.IsNullOrEmpty(usuarioCPF), "O CPF do Usuário não pode ser vazio");
-            DomainExceptionValidation.When(usuarioCPF.Length != 11, "O CPF do Usuário deve ter 11 caracteres");
-            DomainExceptionValidation.When(string.IsNullOrEmpty(usuarioSenhaHash), "A Senha do Usuário não pode ser vazia");
+                "O Email do Usuário deve ter no mínimo 5 caracteres e no máximo 200 caracteres.");
+            DomainExceptionValidation.When(usuarioCPF == null, "O CPF do Usuário é obrigatório.");
+            DomainExceptionValidation.When(!NumeroFiscal.IsCPFValid(usuarioCPF.Numero), "O CPF do Usuário é inválido.");
+            DomainExceptionValidation.When(string.IsNullOrEmpty(usuarioSenhaHash), "A Senha do Usuário é obrigatória.");
             DomainExceptionValidation.When(usuarioSenhaHash.Length < 8 || usuarioSenhaHash.Length > 200, 
-                "A Senha do Usuário deve ter no mínimo 8 caracteres e no máximo 200 caracteres");
+                "A Senha do Usuário deve ter no mínimo 8 caracteres e no máximo 200 caracteres.");
             
 
             UsuarioNome = usuarioNome;
@@ -91,7 +87,7 @@ namespace ALPS.Domain.Entities
         public void Update(
             string usuarioNome,
             string usuarioEmail,
-            string usuarioCPF,
+            NumeroFiscal usuarioCPF,
             string usuarioSenhaHash,
             bool usuarioAtivo     
             )

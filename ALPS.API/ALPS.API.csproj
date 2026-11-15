@@ -8,7 +8,8 @@
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
-  <ItemGroup>
+<ItemGroup>
+    <PackageReference Include="AutoMapper" Version="15.1.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.11">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -16,19 +17,16 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.11">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="Mappers\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ALPS.Application\ALPS.Application.csproj" />
     <ProjectReference Include="..\ALPS.Domain\ALPS.Domain.csproj" />
     <ProjectReference Include="..\ALPS.Infra.CrossCutting\ALPS.Infra.CrossCutting.csproj" />
+    <ProjectReference Include="..\ALPS.Infra.Data\ALPS.Infra.Data.csproj" />
   </ItemGroup>
 
 </Project>

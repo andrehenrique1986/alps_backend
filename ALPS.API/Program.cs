@@ -1,3 +1,4 @@
+using ALPS.API.Mappers;
 using ALPS.Application.AppServices.Interfaces;
 using ALPS.Application.AppServices.Services;
 using ALPS.Domain.Interfaces.Repository;
@@ -10,6 +11,12 @@ using Microsoft.OpenApi.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+// Registra o AutoMapper apenas uma vez apontando para o assembly do perfil
+builder.Services.AddAutoMapper(cfg =>
+{
+    // Configurações adicionais, se necessarias
+}, typeof(Program).Assembly);
 
 builder.Services.AddControllers();
 
@@ -31,7 +38,6 @@ builder.Services.AddScoped<IAppUsuarioService, AppUsuarioService>();
 
 // Serviços da camada de domínio
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
-
 
 // Repositórios da camada de infraestrutura
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
