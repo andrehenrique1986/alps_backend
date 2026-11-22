@@ -1,4 +1,3 @@
-using ALPS.API.Mappers;
 using ALPS.Application.AppServices.Interfaces;
 using ALPS.Application.AppServices.Services;
 using ALPS.Domain.Interfaces.Repository;
@@ -34,12 +33,15 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 // Serviços da camada de aplicação
+builder.Services.AddScoped<IAppFornecedorService, AppFornecedorService>();
 builder.Services.AddScoped<IAppUsuarioService, AppUsuarioService>();
 
 // Serviços da camada de domínio
+builder.Services.AddScoped<IFornecedorService, FornecedorService>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 
 // Repositórios da camada de infraestrutura
+builder.Services.AddScoped<IFornecedorRepository, FornecedorRepository>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
 var app = builder.Build();

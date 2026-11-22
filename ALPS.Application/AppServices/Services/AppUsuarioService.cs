@@ -9,7 +9,8 @@ namespace ALPS.Application.AppServices.Services
     {
         private readonly IUsuarioService _usuarioService;
 
-        public AppUsuarioService(IUsuarioService usuarioService) : base(usuarioService)
+        public AppUsuarioService(IUsuarioService usuarioService) 
+            : base(usuarioService)
         {
             _usuarioService = usuarioService;
         }       
