@@ -11,6 +11,7 @@ namespace ALPS.Infra.Data.Context
         }
         
         public DbSet<Usuario> Usuario { get; set; }
+        public DbSet<Fornecedor> Fornecedor { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

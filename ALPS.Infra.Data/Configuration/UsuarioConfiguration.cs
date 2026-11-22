@@ -29,6 +29,9 @@ namespace ALPS.Infra.Data.Configuration
                 .IsRequired();
 
             builder.Property(u => u.UsuarioCPF)
+                .HasConversion(
+                     cpf => cpf.Numero,
+                     cpfString => new NumeroFiscal(cpfString))
                 .HasColumnName("usuario_cpf")
                 .HasMaxLength(11)
                 .IsRequired();
@@ -44,6 +47,7 @@ namespace ALPS.Infra.Data.Configuration
 
             builder.Property(u => u.UsuarioDataCriacao)
                 .HasColumnName("usuario_data_criacao")
+                .HasColumnType("timestamp with time zone")
                 .IsRequired();
         }
     }

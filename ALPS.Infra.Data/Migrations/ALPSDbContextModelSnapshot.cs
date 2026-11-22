@@ -22,6 +22,65 @@ namespace ALPS.Infra.Data.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("ALPS.Domain.Entities.Fornecedor", b =>
+                {
+                    b.Property<int>("FornecedorId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("fornecedor_id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("FornecedorId"));
+
+                    b.Property<bool>("FornecedorAtivo")
+                        .HasColumnType("boolean")
+                        .HasColumnName("fornecedor_ativo");
+
+                    b.Property<DateTime>("FornecedorDataCriacao")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("fornecedor_data_criacao");
+
+                    b.Property<string>("FornecedorEmail")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)")
+                        .HasColumnName("fornecedor_email");
+
+                    b.Property<string>("FornecedorEndereco")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("character varying(300)")
+                        .HasColumnName("fornecedor_endereco");
+
+                    b.Property<string>("FornecedorNome")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)")
+                        .HasColumnName("fornecedor_nome");
+
+                    b.Property<string>("FornecedorNomeFantasia")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)")
+                        .HasColumnName("fornecedor_nome_fantasia");
+
+                    b.Property<string>("FornecedorNumeroFiscal")
+                        .IsRequired()
+                        .HasMaxLength(14)
+                        .HasColumnType("character varying(14)")
+                        .HasColumnName("fornecedor_numero_fiscal");
+
+                    b.Property<string>("FornecedorTelefone")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)")
+                        .HasColumnName("fornecedor_telefone");
+
+                    b.HasKey("FornecedorId")
+                        .HasName("pk_fornecedor_id");
+
+                    b.ToTable("Fornecedor", (string)null);
+                });
+
             modelBuilder.Entity("ALPS.Domain.Entities.Usuario", b =>
                 {
                     b.Property<int>("UsuarioId")

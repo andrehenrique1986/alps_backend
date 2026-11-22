@@ -58,11 +58,14 @@ namespace ALPS.API.Controllers
             }
             catch (Exception ex)
             {
+                var detalheInterno = ex.InnerException?.InnerException?.Message
+                         ?? ex.InnerException?.Message
+                         ?? ex.Message;
                 // 6. Tratamento de exceções
                 return StatusCode(500, new ResponseDTO<UsuarioDTO>
                 {
                     Sucesso = false,
-                    Mensagem = $"Ocorreu um erro ao criar o usuário: {ex.Message}",
+                    Mensagem = $"Ocorreu um erro ao criar o usuário: {detalheInterno}",
                     Dados = null
                 });
             }

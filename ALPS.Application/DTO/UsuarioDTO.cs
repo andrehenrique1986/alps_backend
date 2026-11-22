@@ -1,5 +1,4 @@
-﻿using ALPS.Domain.Entities;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 
 namespace ALPS.Application.DTO
@@ -29,9 +28,5 @@ namespace ALPS.Application.DTO
         [DataType(DataType.DateTime, ErrorMessage = "A Data de Criação do Usuário deve ser uma data e hora válida.")]
         public DateTime UsuarioDataCriacao { get; set; }
 
-        public static implicit operator UsuarioDTO(Usuario v)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
